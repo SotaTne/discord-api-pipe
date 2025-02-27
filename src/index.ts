@@ -1,7 +1,7 @@
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
 		// Discord REST API のベースURL
-		const DISCORD_API_BASE = 'https://discord.com/api';
+		const DISCORD_API_BASE = 'https://discord.com/api/v10';
 
 		// オリジナルのリクエストURLからパスとクエリ文字列を取得
 		const url = new URL(request.url);
@@ -13,7 +13,7 @@ export default {
 		newHeaders.delete('host');
 
 		// Bot Token を環境変数から取得し、Authorization ヘッダーに設定
-		const token = env.DISCORD_BOT_TOKEN;
+		const token = env.DISCORD_TOKEN;
 		if (!token) {
 			return new Response('Server configuration error: missing Discord token', { status: 500 });
 		}
